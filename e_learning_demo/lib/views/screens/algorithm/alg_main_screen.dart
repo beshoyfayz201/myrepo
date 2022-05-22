@@ -162,6 +162,7 @@ class _AlgorithmScreenState extends State<AlgorithmScreen> {
 
                 ElevatedButton(
                     onPressed: () {
+                      print(monitor.actions);
                       Navigator.pop(context);
                     },
                     child: Text("get back to home"))
