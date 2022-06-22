@@ -77,7 +77,7 @@ class _CategoryItemState extends State<CategoryItem> {
             title: Text(
               widget.a.title,
               style:
-                  TextStyle(color: Colors.white, fontFamily: 'b', fontSize: 44),
+                  TextStyle(color: Colors.white, fontFamily: 'b', fontSize: 40),
             ),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),

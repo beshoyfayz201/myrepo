@@ -1,3 +1,4 @@
+import 'package:e_learning_demo/app_style/colors.dart';
 import 'package:e_learning_demo/app_style/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,9 @@ class MeassageBuble extends StatelessWidget {
           SizeConfig.defaultsize!),
       padding: EdgeInsets.all(SizeConfig.defaultsize!),
       decoration: BoxDecoration(
+          border: (name == "z") //markup professur buble
+              ? Border.all(color: Colors.white, width: 3)
+              : null,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(15),
             topRight: Radius.circular(15),
@@ -26,11 +30,13 @@ class MeassageBuble extends StatelessWidget {
           ),
           gradient: isMe
               ? LinearGradient(colors: [
-                  Colors.blue.shade200,
-                  Colors.blue.shade500,
+                  AColors.prime,
+                  AColors.prime.withOpacity(0.8),
                 ])
-              : LinearGradient(
-                  colors: [Colors.grey.shade700, Colors.grey.shade600])),
+              : LinearGradient(colors: [
+                  AColors.lightGreen,
+                  AColors.lightGreen.withOpacity(0.9)
+                ])),
       child: Column(
         crossAxisAlignment:
             isMe ? CrossAxisAlignment.start : CrossAxisAlignment.end,

@@ -69,12 +69,15 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        body: ListView.separated(
-            separatorBuilder: (context, index) => SizedBox(
-                  height: 10,
-                ),
-            itemCount: algo.length,
-            itemBuilder: (context, k) => CategoryItem(a: algo[k], i: k)));
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView.separated(
+              separatorBuilder: (context, index) => SizedBox(
+                    height: 10,
+                  ),
+              itemCount: algo.length,
+              itemBuilder: (context, k) => CategoryItem(a: algo[k], i: k)),
+        ));
   }
 }
 

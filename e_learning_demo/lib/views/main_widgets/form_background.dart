@@ -31,12 +31,9 @@ class FormBackground extends StatelessWidget {
             ])),
           ),
           decoration: BoxDecoration(
-            
             image: DecorationImage(
-
                 image: AssetImage(
                   imagePath,
-
                 ),
                 fit: BoxFit.fill),
           ),
@@ -47,7 +44,7 @@ class FormBackground extends StatelessWidget {
                 child: Text(
               title,
               style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w600,
                     color: Colors.white,
                     fontSize: 45,
                   ),

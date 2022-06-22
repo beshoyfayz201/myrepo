@@ -32,7 +32,6 @@ class _ChatScreenState extends State<ChatScreen> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,44 +39,49 @@ class _ChatScreenState extends State<ChatScreen> {
         child: Column(
           children: [
             UserAccountsDrawerHeader(
-                  accountName: Text("welcome to alpha"),
+                accountName: Text("welcome to alpha"),
                 accountEmail: Text(widget.u!.email!)),
-            ElevatedButton(
-                onPressed: () {
-                
-                },
-                child: const Text("Sign Out"))
+            ElevatedButton(onPressed: () {}, child: const Text("Sign Out"))
           ],
         ),
       ),
-      appBar: AppBar(),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          StreamBuilder(
-              stream: FirebaseFirestore.instance
-                  .collection("c")
-                  .orderBy("at", descending: true)
-                  .snapshots(),
-              builder: (ctx,AsyncSnapshot snapshots) =>
-                  snapshots.connectionState == ConnectionState.waiting
+      appBar: AppBar(backgroundColor: Colors.grey.shade300),
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/images/chatbck.jpg"),
+                fit: BoxFit.fill)),
+        child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection("c")
+                      .orderBy("at", descending: true)
+                      .snapshots(),
+                  builder: (ctx, AsyncSnapshot snapshots) => snapshots
+                              .connectionState ==
+                          ConnectionState.waiting
                       ? Padding(
-                          padding:  EdgeInsets.all(SizeConfig.defaultsize!*2),
-                          child: const Center(child: CircularProgressIndicator()),
+                          padding: EdgeInsets.all(SizeConfig.defaultsize! * 2),
+                          child:
+                              const Center(child: CircularProgressIndicator()),
                         )
                       : Expanded(
-
                           child: ListView.builder(
                               reverse: true,
                               itemCount: snapshots.data!.docs.length,
                               itemBuilder: (context, i) => MeassageBuble(
                                   snapshots.data!.docs[i]['name'],
-                                  snapshots.data.docs[i]['id']==widget.u!.uid,
+                                  snapshots.data.docs[i]['id'] == widget.u!.uid,
                                   snapshots.data.docs[i]["txt"],
                                   ValueKey(snapshots.data.docs[i].id))),
                         )),
-          NewMeassage()
-        ],
+              NewMeassage()
+            ],
+          ),
+        ),
       ),
     );
   }

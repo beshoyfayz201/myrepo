@@ -57,19 +57,26 @@ class _AlgorithmScreenState extends State<AlgorithmScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Monitor monitor = Provider.of<Monitor>(context, listen: false);
+    Monitor monitor = Provider.of<Monitor>(context);
 
     return Scaffold(
         body: TopMonitorWidget(
-      title: widget.algorithm.title,
+      title: "take a brief",
       child: FormBackground(
         //title
-        title: "Alpha",
+        title: widget.algorithm.title,
         imagePath: "assets/images/back.jpg",
         graidentColor: AColors.shine_blue,
         //real body
         child: GestureDetector(
           onVerticalDragDown: (d) {
+            print(
+                "dirction in y axis:" + d.globalPosition.direction.toString());
+
+            print("distance:" + d.globalPosition.distance.toString());
+            print("DX:" + d.globalPosition.dx.toString());
+
+            print("DY:" + d.globalPosition.dy.toString());
             monitor.addEvent(
                 "${d.globalPosition} at${DateTime.now()}${sc!.position}\n\n");
           },
@@ -115,7 +122,7 @@ class _AlgorithmScreenState extends State<AlgorithmScreen> {
                     ElevatedButton(
                         child: const Text('prev'),
                         onPressed: () {
-                          monitor.addEvent("prev pressed @${DateTime.now()}\n");
+                          monitor.addEvent("prev :${DateTime.now()}\n");
 
                           if (!controller!.isActive) {
                             if (levelInput?.value != 0) levelInput?.value -= 1;
@@ -125,7 +132,7 @@ class _AlgorithmScreenState extends State<AlgorithmScreen> {
                     ElevatedButton(
                         child: const Text('Next'),
                         onPressed: () {
-                          monitor.addEvent("next pressed @${DateTime.now()}\n");
+                          monitor.addEvent("next:${DateTime.now()}\n\n");
                           if (!controller!.isActive) {
                             if (levelInput?.value != widget.algorithm.last) {
                               if (widget.algorithm.stops
@@ -181,6 +188,7 @@ class _AlgorithmScreenState extends State<AlgorithmScreen> {
     AlertDialog qDialog = AlertDialog(
       alignment: Alignment.bottomRight,
       content: Text(q.q),
+      elevation: 15,
       actionsAlignment: MainAxisAlignment.center,
       title: Text("quiz"),
       actions: q.answers
@@ -211,10 +219,11 @@ class _AlgorithmScreenState extends State<AlgorithmScreen> {
           .toList(),
     );
     showDialog(
-        context: context,
-        builder: (ctx) => qDialog,
-        barrierDismissible: false,
-        barrierColor: Colors.transparent);
+      context: context,
+      builder: (ctx) => qDialog,
+      barrierDismissible: false,
+      barrierColor: Colors.transparent,
+    );
     AlertDialog doneDialog;
     AlertDialog wrongDialog;
   }
