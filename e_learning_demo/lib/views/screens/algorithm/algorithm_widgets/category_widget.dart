@@ -1,7 +1,9 @@
 import 'package:e_learning_demo/app_style/colors.dart';
 import 'package:e_learning_demo/models/algorithm.dart';
+import 'package:e_learning_demo/models/robowords.dart';
 import 'package:e_learning_demo/views/screens/algorithm/algorithm_widgets/sub_category.dart';
 import 'package:e_learning_demo/views/screens/exam_screen/exam_screen.dart';
+import 'package:e_learning_demo/views/screens/mr_robot/robot_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../alg_main_screen.dart';
@@ -67,7 +69,10 @@ class _CategoryItemState extends State<CategoryItem> {
                   child: SubCategory(
                       color: AColors.orange,
                       img: "assets/images/c2.png",
-                      goTo: () {},
+                      goTo: () {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (c) => Robot()));
+                      },
                       txt: "Play"),
                 ),
               ],

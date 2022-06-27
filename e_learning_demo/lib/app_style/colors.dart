@@ -14,7 +14,8 @@ class AColors {
     Color(0xff4763d8),
     Colors.deepPurple,
     Colors.red,
-    Colors.yellow
+    Color.fromARGB(255, 98, 54, 15),
+    Color.fromARGB(255, 128, 125, 125)
   ];
 
   static List<Color> shine_blue = [
