@@ -4,6 +4,13 @@ class ExamModel {
   List<Question> quests;
   List<int>? score = List.generate(20, (i) => 4);
   ExamModel({required this.quests});
+
+//  Map<String,dynamic> getMap() {
+//     List<Map<String, dynamic>> questsList=
+//     quests.map((e) => e.getMap()).toList();
+    
+
+//   }
 }
 //
 
@@ -149,11 +156,14 @@ ExamModel naiveExam = ExamModel(quests: [
   ),
 ]);
 
-ExamModel huffmanExam = ExamModel(quests : [
-  
+ExamModel huffmanExam = ExamModel(quests: [
   Question(
     q: "Which of the following is true about Huffman Coding?",
-    answers: ["Huffman coding may become lossy in some cases", "In Huffman coding, no code is prefix of any other code.", "all of the above"],
+    answers: [
+      "Huffman coding may become lossy in some cases",
+      "In Huffman coding, no code is prefix of any other code.",
+      "all of the above"
+    ],
     ansIndex: 1,
     why: " ",
   ),
@@ -173,31 +183,36 @@ ExamModel huffmanExam = ExamModel(quests : [
     q: "How many printable characters does the ASCII character set consists of?",
     answers: ["120", "128", "100"],
     ansIndex: 2,
-    why: "Out of 128 characters in an ASCII set, roughly, only 100 characters are printable while the rest are non-printable. ",
+    why:
+        "Out of 128 characters in an ASCII set, roughly, only 100 characters are printable while the rest are non-printable. ",
   ),
   Question(
     q: "How many bits are needed for standard encoding if the size of the character set is X?",
     answers: ["log X", " X+1", "2X"],
     ansIndex: 0,
-    why: " If the size of the character set is X, then [log X] bits are needed for representation in a standard encoding.",
+    why:
+        " If the size of the character set is X, then [log X] bits are needed for representation in a standard encoding.",
   ),
   Question(
     q: "What is the running time of the Huffman encoding algorithm?",
     answers: ["O(C log C)", " O( N log C)", "O(log C)"],
     ansIndex: 0,
-    why: "If we maintain the trees in a priority queue, ordered by weight, then the running time is given by O(C log C). ",
+    why:
+        "If we maintain the trees in a priority queue, ordered by weight, then the running time is given by O(C log C). ",
   ),
   Question(
     q: "In Huffman coding, data in a tree always occur?",
     answers: ["roots", "leaves", "left sub trees"],
     ansIndex: 1,
-    why: "In Huffman encoding, data is always stored at the leaves of a tree inorder to compute the codeword effectively ",
+    why:
+        "In Huffman encoding, data is always stored at the leaves of a tree inorder to compute the codeword effectively ",
   ),
   Question(
     q: "The type of encoding where no character code is the prefix of another character code is called?",
     answers: ["optimal encoding", "prefix encoding", "frequency encoding"],
     ansIndex: 1,
-    why: "Even if the character codes are of different lengths, the encoding where no character code is the prefix of another character code is called prefix encoding. ",
+    why:
+        "Even if the character codes are of different lengths, the encoding where no character code is the prefix of another character code is called prefix encoding. ",
   ),
   Question(
     q: "The variable-length codes assigned to input characters are ?",
@@ -219,19 +234,31 @@ ExamModel huffmanExam = ExamModel(quests : [
   ),
   Question(
     q: "Huffman algorithm was created and used for ?",
-    answers: ["transmitting fax and text.", "used by conventional compression formats like PKZIP, GZIP, etc.", "all of the above"],
+    answers: [
+      "transmitting fax and text.",
+      "used by conventional compression formats like PKZIP, GZIP, etc.",
+      "all of the above"
+    ],
     ansIndex: 2,
     why: " ",
   ),
   Question(
     q: "Huffman coding is useful in cases where there is ?",
-    answers: ["a pattern needs to be found in a text ", "a alot of pathes and we need to find the shortest one", "a series of frequently occurring characters"],
+    answers: [
+      "a pattern needs to be found in a text ",
+      "a alot of pathes and we need to find the shortest one",
+      "a series of frequently occurring characters"
+    ],
     ansIndex: 2,
     why: " ",
   ),
   Question(
     q: "what of these is not a part in Huffman coding",
-    answers: ["Build a Huffman Tree from input characters.", "Build a Huffman list from input characters.", "Traverse the Huffman Tree and assign codes to characters."],
+    answers: [
+      "Build a Huffman Tree from input characters.",
+      "Build a Huffman list from input characters.",
+      "Traverse the Huffman Tree and assign codes to characters."
+    ],
     ansIndex: 1,
     why: " ",
   ),
@@ -261,7 +288,11 @@ ExamModel huffmanExam = ExamModel(quests : [
   ),
   Question(
     q: "Applications of Huffman Coding: ",
-    answers: ["They are used for transmitting fax and text.", "They are used by conventional compression formats like PKZIP, GZIP, etc.", "all of the above"],
+    answers: [
+      "They are used for transmitting fax and text.",
+      "They are used by conventional compression formats like PKZIP, GZIP, etc.",
+      "all of the above"
+    ],
     ansIndex: 2,
     why: " ",
   ),
@@ -271,19 +302,26 @@ ExamModel huffmanExam = ExamModel(quests : [
     ansIndex: 0,
     why: " ",
   ),
-  
 ]);
-ExamModel suffixExamModel=ExamModel(quests: [
-
+ExamModel suffixExamModel = ExamModel(quests: [
   Question(
     q: "Which of the following is false?",
-    answers: ["Suffix array is always sorted", "Suffix array is used in string matching problems", "Suffix array is always unsorted"],
+    answers: [
+      "Suffix array is always sorted",
+      "Suffix array is used in string matching problems",
+      "Suffix array is always unsorted"
+    ],
     ansIndex: 2,
-    why: "Suffix array is always sorted as it contains all the suffixes of a string in sorted order. Suffix arrays are used to solve problems related to string, like string matching problems.",
+    why:
+        "Suffix array is always sorted as it contains all the suffixes of a string in sorted order. Suffix arrays are used to solve problems related to string, like string matching problems.",
   ),
   Question(
     q: "Suffix array of the string “statistics” is ____________",
-    answers: ["2 8 7 4 9 0 5 1 6 3", "2 7 4 9 8 0 5 1 6 3", "2 4 9 0 5 7 8 1 6 3"],
+    answers: [
+      "2 8 7 4 9 0 5 1 6 3",
+      "2 7 4 9 8 0 5 1 6 3",
+      "2 4 9 0 5 7 8 1 6 3"
+    ],
     ansIndex: 0,
     why: " ",
   ),
@@ -291,47 +329,62 @@ ExamModel suffixExamModel=ExamModel(quests: [
     q: "Suffix array can be created by performing __________ traversal of a suffix tree.",
     answers: ["breadth-first", "level order", "depth-first"],
     ansIndex: 2,
-    why: "A suffix tree is a trie, which contains all the suffixes of the given string as their keys and positions in the string as their values. So, we can construct a suffix array by performing the depth-first traversal of a suffix tree.",
+    why:
+        "A suffix tree is a trie, which contains all the suffixes of the given string as their keys and positions in the string as their values. So, we can construct a suffix array by performing the depth-first traversal of a suffix tree.",
   ),
   Question(
     q: "Suffix array is space efficient and faster than the suffix tree.",
     answers: ["True", "False"],
     ansIndex: 1,
-    why: "Suffix arrays are more space efficient than the suffix trees as they just store the original string and an array of integer. But working with suffix tree is faster than that of the suffix array.",
+    why:
+        "Suffix arrays are more space efficient than the suffix trees as they just store the original string and an array of integer. But working with suffix tree is faster than that of the suffix array.",
   ),
   Question(
     q: "If comparison based sorting algorithm is used construct the suffix array, then what will be time required to construct the suffix array?",
     answers: ["O(nlogn)", "O(n^2)", "O(n^2logn)"],
     ansIndex: 2,
-    why: "On average comparison based sorting algorithms require O(nlogn) comparisons. But comparing a suffix takes O(n). So, overall time to construct the suffix array will be O(nlogn) * O(n) = O(n^2logn).",
+    why:
+        "On average comparison based sorting algorithms require O(nlogn) comparisons. But comparing a suffix takes O(n). So, overall time to construct the suffix array will be O(nlogn) * O(n) = O(n^2logn).",
   ),
   Question(
     q: "What will be the suffix array of the string “engineering”?",
-    answers: ["5 0 6 1 4 9 1 7 0 2 3 8", "5 0 6 10 2 4 9 1 7 3 8", "5 0 6 10 2 3 8 4 9 1 7"],
+    answers: [
+      "5 0 6 1 4 9 1 7 0 2 3 8",
+      "5 0 6 10 2 4 9 1 7 3 8",
+      "5 0 6 10 2 3 8 4 9 1 7"
+    ],
     ansIndex: 2,
-    why: "Correct choice is : 5 0 6 10 2 3 8 4 9 1 7.\nBecause the suffix array formed will be: 5 eering 0 engineering 6 ering 10 g 2 gineering 3 ineering 8 ing 4 neering 9 ng 1 ngineering 7 ring.",
+    why:
+        "Correct choice is : 5 0 6 10 2 3 8 4 9 1 7.\nBecause the suffix array formed will be: 5 eering 0 engineering 6 ering 10 g 2 gineering 3 ineering 8 ing 4 neering 9 ng 1 ngineering 7 ring.",
   ),
   Question(
     q: "LCP array and ______ is used to construct suffix tree.",
     answers: ["Hash tree", "Hash trie", "Suffix array"],
     ansIndex: 2,
-    why: "Suffix tree can be created using an LCP array and a suffix array. If we are given a string of length (n + 1) and its suffix array and LCP array, we can construct the suffix tree in linear time i.e in O(n) time.",
+    why:
+        "Suffix tree can be created using an LCP array and a suffix array. If we are given a string of length (n + 1) and its suffix array and LCP array, we can construct the suffix tree in linear time i.e in O(n) time.",
   ),
   Question(
     q: "Suffix array can be created in O(nlogn) time.",
     answers: ["True", "False"],
     ansIndex: 0,
-    why: "Suffix array can be constructed in O(n^2logn) time using sorting algorithms but it is possible to build the suffix array in O(nlogn) time using prefix doubling.",
+    why:
+        "Suffix array can be constructed in O(n^2logn) time using sorting algorithms but it is possible to build the suffix array in O(nlogn) time using prefix doubling.",
   ),
   Question(
     q: "What is the time required to locate the occurrences of a pattern P of length m in a string of length n using suffix array?",
     answers: ["O(nm)", "O(mnlogn)", "O(mlogn)"],
     ansIndex: 2,
-    why: "Suffix arrays are used to find the occurrences of a pattern in a string. Pattern of length m will require m characters to compare, so using suffix array we can find occurrences of a pattern in the string of length n in O(mlogn) time.",
+    why:
+        "Suffix arrays are used to find the occurrences of a pattern in a string. Pattern of length m will require m characters to compare, so using suffix array we can find occurrences of a pattern in the string of length n in O(mlogn) time.",
   ),
   Question(
     q: "Applications of Suffix Array: ",
-    answers: ["Pattern Searching", "Finding the longest common substring", "all of the above"],
+    answers: [
+      "Pattern Searching",
+      "Finding the longest common substring",
+      "all of the above"
+    ],
     ansIndex: 2,
     why: " ",
   ),
@@ -395,6 +448,4 @@ ExamModel suffixExamModel=ExamModel(quests: [
     ansIndex: 1,
     why: " ",
   ),
-
-]
- );
+]);

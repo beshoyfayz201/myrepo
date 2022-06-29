@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_learning_demo/app_style/colors.dart';
 import 'package:e_learning_demo/app_style/size_config.dart';
 import 'package:e_learning_demo/control/loader.dart';
 import 'package:e_learning_demo/control/validator.dart';
+import 'package:e_learning_demo/views/main_widgets/regsternote.dart';
 import 'package:e_learning_demo/views/main_widgets/text_field.dart';
 import 'package:e_learning_demo/views/main_widgets/titles.dart';
 import 'package:e_learning_demo/views/screens/algorithm/alg_main_screen.dart';
@@ -11,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
 
+import '../../main_widgets/login_meathods.dart';
 import 'login_screen.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -35,7 +38,7 @@ class SignupScreen extends StatelessWidget {
                   "assets/images/abck.png",
                   fit: BoxFit.cover,
                 ),
-                height: SizeConfig.height! * 0.3,
+                height: SizeConfig.height! * 0.26,
                 width: SizeConfig.width,
               ),
               Padding(
@@ -43,21 +46,21 @@ class SignupScreen extends StatelessWidget {
                     EdgeInsets.symmetric(horizontal: SizeConfig.defaultsize!),
                 child: const TitleBlueY8(
                   txt: "Create your Account",
-                  size: 35,
+                  size: 25,
                 ),
               ),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const TitleBlueY8(txt: "Already have an account", size: 22),
+                  const TitleBluethin(txt: "Already have an account", size: 20),
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).pushNamed(LoginScreen.id);
                     },
                     child: const TitleBluedY8(
                       txt: "Log in",
-                      size: 25,
+                      size: 20,
                     ),
                   )
                 ],
@@ -122,9 +125,9 @@ class SignupScreen extends StatelessWidget {
                                       "pass": pass!.trim(),
                                       "tokken": value.user!.uid
                                     });
-                                    
-                              Provider.of<Loader>(context, listen: false)
-                                  .changeLoaderState();
+
+                                    Provider.of<Loader>(context, listen: false)
+                                        .changeLoaderState();
                                   });
 
                                   emailCont.clear();
@@ -159,40 +162,54 @@ class SignupScreen extends StatelessWidget {
                               ],
                             )),
                         IntrinsicWidth(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Card(
-                                  color: Colors.blue.shade100,
-                                  child: SizedBox(
-                                    width: SizeConfig.width! / 2 -
-                                        SizeConfig.defaultsize!,
-                                    height: 1,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Card(
+                                    color: Colors.blue.shade100,
+                                    child: SizedBox(
+                                      width: SizeConfig.width! / 2 -
+                                          SizeConfig.defaultsize!,
+                                      height: 1,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              const Text(
-                                "OR",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.blue,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              Expanded(
-                                child: Card(
-                                  color: Colors.blue.shade100,
-                                  child: const SizedBox(
-                                    height: 1,
+                                const Text(
+                                  "OR",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.blue,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                Expanded(
+                                  child: Card(
+                                    color: Colors.blue.shade100,
+                                    child: const SizedBox(
+                                      height: 1,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         )
                       ],
                     ),
-                  ))
+                  )),
+              LoginMeathods(),
+              RegisterNote(
+                text1: "By clicking sign up you are agreeing our ",
+                text2: "\n privacy policy",
+                color: AColors.prime,
+                size: 15,
+                function: () {},
+              ),
+              SizedBox(
+                height: 10,
+              )
             ],
           ),
         ),

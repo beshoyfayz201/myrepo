@@ -36,3 +36,20 @@ class TitleBluedY8 extends StatelessWidget {
         ));
   }
 }
+class TitleBluethin extends StatelessWidget {
+  final String txt;
+  final double size;
+  const TitleBluethin({Key? key, required this.txt, required this.size})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(txt,
+        style: TextStyle(
+          fontFamily: "y",
+          fontSize: size,
+          color: AColors.prime,
+          fontWeight: FontWeight.w300,
+        ));
+  }
+}

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AColors {
   AColors._();
   static const Color cyan = Color(0xff00c5ee);
-  static const Color prime = Color(0xff219dfe);
+  static const Color prime = Color.fromARGB(255, 11, 117, 199);
 
   //category
   static const Color lightGreen = Color(0xff00E29E);

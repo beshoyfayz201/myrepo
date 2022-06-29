@@ -25,6 +25,13 @@ class Algorithm {
   final List<Question> quests;
   int last;
   ExamModel examModel;
+
+  Map<String, dynamic> getMap() {
+    return {
+      "title": this.title,
+      "intro": this.intro,
+    };
+  }
 }
 
 Algorithm naiveAlgorithm = Algorithm(
@@ -33,11 +40,7 @@ Algorithm naiveAlgorithm = Algorithm(
     last: 7,
     intro:
         "Naive algorithm for Pattern Searching Given a text txt[0..n-1] and a pattern pat[0..m-1], write a function search(char pat[], char txt[]) that prints all occurrences of pat[] in txt[]. You may assume that n > m.",
-    stops: [
-      3,
-      5,
-      6
-    ],
+    stops: [3, 5, 6],
     topics: [
       const Topic(
           subtitle: "Example",
@@ -82,22 +85,15 @@ Algorithm naiveAlgorithm = Algorithm(
       //     q: "Which of the following is a sub string of \"ATGGGCGCG\"  ?",
       //     answers: ["ATC", "CGC", "AGT"],
       //     ansIndex: 1),
-    ]
-    ,examModel: naiveExam);
+    ],
+    examModel: naiveExam);
 Algorithm huffman = Algorithm(
     title: "Huffman Algorithm ",
     path: "assets/rivs/hm.riv",
     last: 17,
     intro:
         "Huffman coding is a lossless data compression algorithm. The idea is to assign variable-length codes to input characters, lengths of the assigned codes are based on the frequencies of corresponding characters. The most frequent character gets the smallest code and the least frequent character gets the largest code.\nThe variable-length codes assigned to input characters are Prefix Codes, means the codes (bit sequences) are assigned in such a way that the code assigned to one character is not the prefix of code assigned to any other character. This is how Huffman Coding makes sure that there is no ambiguity when decoding the generated bitstream.\n\n    why huffman algorithm was created and when its used??\nthe problem of finding the most efficient binary code using a frequency-sorted binary tree and quickly proved this method the most efficient.\nThey are used for transmitting fax and text.\nThey are used by conventional compression formats like PKZIP, GZIP, etc.\nIt is useful in cases where there is a series of frequently occurring characters.\n after reading this if you are intersted to learn the algorithm you can follow the steps",
-    stops: [
-      3,
-      4,
-      6,
-      10,
-      11,
-      16
-    ],
+    stops: [3, 4, 6, 10, 11, 16],
     topics: [
       const Topic(
           subtitle: "Steps to build Huffman Tree",
@@ -131,26 +127,24 @@ Algorithm huffman = Algorithm(
           answers: ["GTAC", "CTGA", "AGTC"],
           ansIndex: 1,
           why: "just count the number of A character in the string"),
-          Question(
+      Question(
           q: "tell me which one will take 0 and 1?",
-          answers: ["AG->0\nT->1","AG->1\nT->0","AG->0\nT->0"],
+          answers: ["AG->0\nT->1", "AG->1\nT->0", "AG->0\nT->0"],
           ansIndex: 1,
           why: "always remember the biger one takes 1 and the smaller takes 0"),
-          
-   Question(
+      Question(
           q: "if AGT=19 & C=10 ,what would be the result of  AGTC ",
-          answers: ["30","9","29"],
+          answers: ["30", "9", "29"],
           ansIndex: 2,
           why: "we just sum the smaller node with the rest each time"),
-          
-   Question(
+      Question(
           q: "follow the A path then tell me if the answer is 110",
-          answers: ["true","false"],
+          answers: ["true", "false"],
           ansIndex: 0,
-          why: "remeber that we go from top to down nodes gathering the zeros and ones"),
-    
-   
-    ],examModel: huffmanExam);
+          why:
+              "remeber that we go from top to down nodes gathering the zeros and ones"),
+    ],
+    examModel: huffmanExam);
 
 Algorithm kmpAlgorithm = Algorithm(
     title: "KMP Algorithm",
@@ -158,9 +152,7 @@ Algorithm kmpAlgorithm = Algorithm(
     last: 2,
     intro:
         "a linear time algorithm for the string matching problem\nGiven a text txt[0..n-1] and a pattern pat[0..m-1], write a function search(char pat[], char txt[]) that prints all occurrences of pat[] in txt[]. You may assume that n > m.",
-    stops: [
-      
-    ],
+    stops: [],
     topics: [
       const Topic(
           subtitle: "Example",
@@ -186,27 +178,24 @@ Algorithm kmpAlgorithm = Algorithm(
           q: "what is the index of the match patern in the text",
           answers: ["4", "1", "3"],
           ansIndex: 2,
-          why: "we count the index incrementally then when we found a match the answer would be the first character of the reigon that matches the pattern")
-    ]
-    ,examModel: naiveExam);
+          why:
+              "we count the index incrementally then when we found a match the answer would be the first character of the reigon that matches the pattern")
+    ],
+    examModel: naiveExam);
 
-    
 Algorithm suffixArrayAlgorithm = Algorithm(
     title: "Suffix Array",
     path: "assets/rivs/suffix.riv",
     last: 16,
     intro:
         "A suffix array is a sorted array of all suffixes of a given string. The definition is similar to Suffix Tree which is compressed trie of all suffixes of the given text. Any suffix tree based algorithm can be replaced with an algorithm that uses a suffix array enhanced with additional information and solves the same problem in the same time complexity A suffix array can be constructed from Suffix tree by doing a DFS traversal of the suffix tree. In fact Suffix array and suffix tree both can be constructed from each other in linear time. \n\nAdvantages of suffix arrays over suffix trees include improved space requirements, simpler linear time construction algorithms (e.g., compared to Ukkonen’s algorithm) and improved cache locality",
-    stops: [
-      5,7,13
-    ],
+    stops: [5, 7, 13],
     topics: [
       const Topic(
           subtitle: "Example",
           txt:
               "Let the given string be \"banana\". \n\n0 banana                          5 a\n\n1 anana     Sort the Suffixes     3 ana\n\n2 nana      ---------------->     1 anana \n\n3 ana        alphabetically       0 banana  \n\n4 na                              4 na   \n\n5 a                               2 nana\n\nSo the suffix array for \"banana\" is {5, 3, 1, 0, 4, 2}"),
       const Topic(
-
           subtitle: "Search a pattern using the built Suffix Array",
           txt:
               "To search a pattern in a text, we preprocess the text and build a suffix array of the text. Since we have a sorted array of all suffixes, Binary Search can be used to search. Following is the search function. Note that the function doesn’t report all occurrences of pattern, it only report one of them.")
@@ -224,20 +213,21 @@ Algorithm suffixArrayAlgorithm = Algorithm(
     quests: [
       Question(
           q: "what is fourth suffix of <GCATCGC>",
-          answers: ["ATCGC","TCGC","CGC"],
+          answers: ["ATCGC", "TCGC", "CGC"],
           ansIndex: 2,
-          why: "remeber that suffix is substring at the end of string of charcters")
-   ,
-   Question(
+          why:
+              "remeber that suffix is substring at the end of string of charcters"),
+      Question(
           q: "what is sixth suffix of <GCATCGC>",
-          answers: ["TCGC","CGC","GC"],
+          answers: ["TCGC", "CGC", "GC"],
           ansIndex: 2,
-          why: "remeber that suffix is substring at the end of string of charcters")
-   ,
-   Question(
+          why:
+              "remeber that suffix is substring at the end of string of charcters"),
+      Question(
           q: "what is the following suffix ?",
-          answers: ["CGC","TCGC","GC"],
+          answers: ["CGC", "TCGC", "GC"],
           ansIndex: 0,
           why: "we sort the suffixes alphabetically !")
-    ]
-    ,examModel: suffixExamModel);
+    ],
+    examModel: suffixExamModel);
+List? allData;

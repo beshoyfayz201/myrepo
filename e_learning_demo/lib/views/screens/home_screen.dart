@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:e_learning_demo/models/algorithm.dart';
 import 'package:e_learning_demo/views/screens/algorithm/algorithm_widgets/category_widget.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import '../main_widgets/drawer.dart';
 import 'chat_screen/chat_screen.dart';
+import 'package:http/http.dart' as http;
 //third party
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -24,6 +29,25 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
   bool isopen = false;
   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
+
+  testa() async {
+    http.Response r = await http.post(
+        Uri.parse(
+          "http://10.0.2.2:44272/api/user/createalgorithm",
+        ),
+        body: jsonEncode(naiveAlgorithm.getMap()),
+        headers: <String, String>{
+          'Content-Type': 'application/json;Charset=UTF-8'
+        });
+    print("\n\n\n_______" + jsonDecode(r.body));
+  }
+
+  @override
+  void initState() {
+    testa();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,32 +75,27 @@ class _HomeScreenState extends State<HomeScreen> {
             style: TextStyle(color: Colors.blue),
           ),
         ),
-        endDrawer: Drawer(
-          child: Column(
-            children: [
-              UserAccountsDrawerHeader(
-                  accountName: Text("test"), accountEmail: Text("test")),
-              ElevatedButton(
-                  onPressed: () {
-                    FirebaseAuth.instance.signOut();
-                    Navigator.pop(context);
-
-                    if (widget.isLogin) {
-                      Navigator.pop(context);
-                    }
-                  },
-                  child: Text("Sign out")),
-            ],
-          ),
-        ),
+        endDrawer: drawer(user: FirebaseAuth.instance.currentUser),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListView.separated(
-              separatorBuilder: (context, index) => SizedBox(
-                    height: 10,
-                  ),
-              itemCount: algo.length,
-              itemBuilder: (context, k) => CategoryItem(a: algo[k], i: k)),
+            separatorBuilder: (context, index) => SizedBox(
+              height: 10,
+            ),
+            itemCount: algo.length,
+            itemBuilder: (context, k) => AnimationConfiguration.staggeredList(
+              duration: Duration(seconds: 2),
+              position: k,
+              child: SlideAnimation(
+                duration: Duration(seconds: 1),
+                curve: Curves.bounceIn,
+                child: FlipAnimation(
+                  duration: Duration(milliseconds: 1500),
+                  child: CategoryItem(a: algo[k], i: k),
+                ),
+              ),
+            ),
+          ),
         ));
   }
 }
@@ -102,5 +121,3 @@ class ChatActionButton extends StatelessWidget {
         ));
   }
 }
-
-//_________________________________________

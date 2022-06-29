@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_learning_demo/app_style/size_config.dart';
+import 'package:e_learning_demo/views/main_widgets/drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -35,16 +36,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: Column(
-          children: [
-            UserAccountsDrawerHeader(
-                accountName: Text("welcome to alpha"),
-                accountEmail: Text(widget.u!.email!)),
-            ElevatedButton(onPressed: () {}, child: const Text("Sign Out"))
-          ],
-        ),
-      ),
+      drawer: drawer(user: FirebaseAuth.instance.currentUser!),
       appBar: AppBar(backgroundColor: Colors.grey.shade300),
       body: Container(
         decoration: BoxDecoration(

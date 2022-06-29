@@ -1,7 +1,10 @@
+import 'package:e_learning_demo/app_style/colors.dart';
 import 'package:e_learning_demo/app_style/size_config.dart';
 import 'package:e_learning_demo/control/loader.dart';
 import 'package:e_learning_demo/control/validator.dart';
+import 'package:e_learning_demo/views/main_widgets/login_meathods.dart';
 import 'package:e_learning_demo/views/main_widgets/text_field.dart';
+import 'package:e_learning_demo/views/main_widgets/titles.dart';
 import 'package:e_learning_demo/views/screens/algorithm/alg_main_screen.dart';
 import 'package:e_learning_demo/views/screens/home_screen.dart';
 import 'package:e_learning_demo/views/screens/register/signup_screen.dart';
@@ -37,35 +40,22 @@ class LoginScreen extends StatelessWidget {
               Padding(
                 padding:
                     EdgeInsets.symmetric(horizontal: SizeConfig.defaultsize!),
-                child: Text(
-                  "Welcome back ",
-                  style: TextStyle(
-                    fontSize: 35,
-                    color: Colors.blue.shade400,
-                    fontWeight: FontWeight.w600,
-                  ),
+                child: TitleBluedY8(
+                  txt: "Welcome back ",
+                  size: 25,
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    "need an account?",
-                    style: TextStyle(
-                      fontSize: 25,
-                      color: Colors.blue.shade400,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
+                  const TitleBluethin(txt: "Already have an account", size: 20),
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).pushNamed(SignupScreen.id);
                     },
-                    child: Text(
-                      "Sign up",
-                      style: Theme.of(context).textTheme.headline5!.copyWith(
-                          color: Colors.blue.shade500,
-                          fontWeight: FontWeight.w700),
+                    child: const TitleBluedY8(
+                      txt: "Signup",
+                      size: 20,
                     ),
                   )
                 ],
@@ -146,37 +136,41 @@ class LoginScreen extends StatelessWidget {
                               ],
                             )),
                         IntrinsicWidth(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Card(
-                                  color: Colors.blue.shade100,
-                                  child: SizedBox(
-                                    width: SizeConfig.width! / 2 -
-                                        SizeConfig.defaultsize!,
-                                    height: 1,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Card(
+                                    color: Colors.blue.shade100,
+                                    child: SizedBox(
+                                      width: SizeConfig.width! / 2 -
+                                          SizeConfig.defaultsize!,
+                                      height: 1,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              const Text(
-                                "OR",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.blue,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              Expanded(
-                                child: Card(
-                                  color: Colors.blue.shade100,
-                                  child: const SizedBox(
-                                    height: 1,
+                                const Text(
+                                  "OR",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.blue,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                Expanded(
+                                  child: Card(
+                                    color: Colors.blue.shade100,
+                                    child: const SizedBox(
+                                      height: 1,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        )
+                        ),
+                        LoginMeathods()
                       ],
                     ),
                   ))
