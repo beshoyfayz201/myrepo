@@ -1,13 +1,29 @@
+import 'dart:convert';
+
 class Topic {
   const Topic({required this.subtitle, required this.txt});
   final String subtitle;
   final String txt;
 
-  Map<String, dynamic> getMap() {
-    return {"subTitle": subtitle, "text": txt,"algorithm":"62bc8c1a0dbaf15ada8c07d0"};
+ 
+
+  Map<String, dynamic> toMap() {
+    final result = <String, dynamic>{};
+  
+    result.addAll({'subtitle': subtitle});
+    result.addAll({'txt': txt});
+  
+    return result;
   }
 
-  Topic fromjson(Map json) {
-    return Topic(subtitle: json["subTitle"], txt: json["text"]);
+  factory Topic.fromMap(Map<String, dynamic> map) {
+    return Topic(
+      subtitle: map['subtitle'] ?? '',
+      txt: map['txt'] ?? '',
+    );
   }
+
+  String toJson() => json.encode(toMap());
+
+  factory Topic.fromJson(String source) => Topic.fromMap(json.decode(source));
 }

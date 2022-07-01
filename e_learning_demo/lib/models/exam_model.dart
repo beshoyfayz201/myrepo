@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:e_learning_demo/models/question.dart';
 
 class ExamModel {
@@ -11,8 +13,26 @@ class ExamModel {
     
 
 //   }
+
+  Map<String, dynamic> toMap() {
+    final result = <String, dynamic>{};
+  
+    result.addAll({'quests': quests.map((x) => x.toMap()).toList()});
+  
+    return result;
+  }
+
+  factory ExamModel.fromMap(Map<String, dynamic> map) {
+    return ExamModel(
+      quests: List<Question>.from(map['quests']?.map((x) => Question.fromMap(x))),
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory ExamModel.fromJson(String source) => ExamModel.fromMap(json.decode(source));
 }
-//
+
 
 ExamModel naiveExam = ExamModel(quests: [
   Question(

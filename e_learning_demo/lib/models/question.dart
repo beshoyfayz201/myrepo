@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Question {
   String q;
   List<String> answers;
@@ -9,20 +11,28 @@ class Question {
       required this.ansIndex,
       required this.why});
 
-  Map<String,dynamic> getMap() {
-    return {
-      "q": this.q,
-      "answers": this.answers,
-      "asnsIndex": this.ansIndex,
-      "why": why,
-    };
+  Map<String, dynamic> toMap() {
+    final result = <String, dynamic>{};
+
+    result.addAll({'q': q});
+    result.addAll({'answers': answers});
+    result.addAll({'ansIndex': ansIndex});
+    result.addAll({'why': why});
+
+    return result;
   }
 
-  Question fromJson(Map<String, dynamic> json) {
-   return Question(ansIndex: json["ansIndex"],
-   answers: json["answers"],
-   q: json["q"],
-   why: json["why"]
-   );
+  factory Question.fromMap(Map<String, dynamic> map) {
+    return Question(
+      q: map['q'] ?? '',
+      answers: List<String>.from(map['answers']),
+      ansIndex: map['ansIndex']?.toInt() ?? 0,
+      why: map['why'] ?? '',
+    );
   }
+
+  String toJson() => json.encode(toMap());
+
+  factory Question.fromJson(String source) =>
+      Question.fromMap(json.decode(source));
 }
