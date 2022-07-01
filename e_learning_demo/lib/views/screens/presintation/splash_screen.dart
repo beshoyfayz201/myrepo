@@ -24,7 +24,7 @@ class SplashScreen extends StatelessWidget {
         ),
         child: Center(
           child: RiveAnimation.asset(
-            "assets/rivs/s0.riv",
+            "assets/rivs/logo.riv",
             fit: BoxFit.cover,
           ),
         ),
@@ -38,10 +38,10 @@ class Root extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      builder: (context, snapshot) =>
-          snapshot.hasData ?HomeScreen(isLogin: false)
-           //HomeScreen(isLogin: false) 
-           : SignupScreen(),
+      builder: (context, snapshot) => snapshot.hasData
+          ? HomeScreen(isLogin: false)
+          //HomeScreen(isLogin: false)
+          : SignupScreen(),
       stream: FirebaseAuth.instance.authStateChanges(),
     );
   }

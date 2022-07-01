@@ -30,6 +30,7 @@ dependencies:
   cloud_firestore: ^3.1.8
   cupertino_icons: ^1.0.2
   custom_timer: ^0.1.1
+  fancy_drawer: ^2.0.0
   firebase: ^9.0.2
   firebase_auth: ^3.3.7
   firebase_core: ^1.12.0
@@ -38,6 +39,7 @@ dependencies:
   flutter_staggered_animations: ^1.0.0
   flutter_swiper_null_safety: ^1.0.2
   flutter_tts: ^3.4.0
+  flutter_zoom_drawer: ^3.0.2
   http: ^0.13.4
   modal_progress_hud_nsn: ^0.1.0-nullsafety-1
   provider: ^6.0.2

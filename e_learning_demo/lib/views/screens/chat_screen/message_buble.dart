@@ -19,7 +19,7 @@ class MeassageBuble extends StatelessWidget {
           SizeConfig.defaultsize!),
       padding: EdgeInsets.all(SizeConfig.defaultsize!),
       decoration: BoxDecoration(
-          border: (name == "z") //markup professur buble
+          border: (name.contains("prof")) //markup professur buble
               ? Border.all(color: Colors.white, width: 3)
               : null,
           borderRadius: BorderRadius.only(
@@ -30,12 +30,12 @@ class MeassageBuble extends StatelessWidget {
           ),
           gradient: isMe
               ? LinearGradient(colors: [
-                  AColors.prime,
-                  AColors.prime.withOpacity(0.8),
+                  AColors.cyan,
+                  AColors.cyan.withOpacity(0.8),
                 ])
               : LinearGradient(colors: [
-                  AColors.lightGreen,
-                  AColors.lightGreen.withOpacity(0.9)
+                  Colors.grey.shade800,
+                  Colors.grey.shade800.withOpacity(0.9)
                 ])),
       child: Column(
         crossAxisAlignment:

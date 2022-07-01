@@ -12,15 +12,14 @@ import 'package:rive/rive.dart';
 enum TtsState { playing, stopped, paused, continued }
 
 class Robot extends StatefulWidget {
-  const Robot({Key? key}) : super(key: key);
+  final String word;
+  const Robot({Key? key, required this.word}) : super(key: key);
 
   @override
   State<Robot> createState() => _RobotState();
 }
 
 class _RobotState extends State<Robot> {
-  SwiperControl s = SwiperControl();
-
   SwiperController swiperController = SwiperController();
   int phController = 0;
   List<String>? robotPhrases;
@@ -35,27 +34,25 @@ class _RobotState extends State<Robot> {
   @override
   void initState() {
     //words to speech
-    RoboWords r = RoboWords(
-        words:
-            " hiiiiiii. im mr robot and im here to read books for you. when ready slide smothely at the bottom up and down to read paragaphs \n ,We'll go through the steps of building a Hoffman tree. get ready\n   As we mentioned the input is a set of unique characters along with their frequency of occurrence and the output is Huffman Tree.\n   first : Create a leaf node for each unique character and build a small heap of all the leaf nodes (Min Heap is used as a priority queue. \n The value of the Frequency field is used to compare two nodes in the minimum heap. Initially, the least frequent character is in the root) \n second : Extract two nodes with minimum frequency from the minimum heap.\n   third  :Create a new internal node with a frequency equal to the sum of the frequencies of the two nodes.\n   Make the first extracted node as its left child node and the other extracted node as its child \n node.  Add this knot to the smaller pile.  Fourthly : Repeat steps 2 and 3 until the pile contains only one node.  The remaining node is the root node and the tree is complete.  Watch now and learn:");
+    RoboWords r = RoboWords(words: widget.word);
     robotPhrases = r.getwordslist();
 
-    flutterTts.setPitch(1.5);
+    flutterTts.setPitch(1);
     flutterTts.setLanguage("en-US");
     flutterTts.setSpeechRate(0.25);
-    flutterTts.setVolume(10);
+    flutterTts.setVolume(1.0);
     flutterTts.speak(robotPhrases![0]);
 // rive animation init
-    rootBundle.load("assets/rivs/robo.riv").then(
+    rootBundle.load("assets/rivs/RF.riv").then(
       (data) async {
         final file = RiveFile.import(data);
         final artboard = file.mainArtboard;
         controller =
-            StateMachineController.fromArtboard(artboard, 'State Machine');
+            StateMachineController.fromArtboard(artboard, 'State Machine 1');
         if (controller != null) {
           artboard.addController(controller!);
           levelInput = controller!.findInput('Number 1');
-          levelInput?.value = 1;
+          levelInput?.value = 2;
         }
         setState(() => _riveArtboard = artboard);
       },
@@ -90,25 +87,30 @@ class _RobotState extends State<Robot> {
               height: MediaQuery.of(context).size.height * 0.4,
             )),
         Container(
-          height: SizeConfig.height! / 2,
+          height: SizeConfig.height! / 1.8,
           padding: EdgeInsets.all(20),
           child: Align(
             alignment: Alignment.bottomCenter,
             child: Swiper(
               onIndexChanged: (v) {
                 controller!.isActive = true;
+                if (robotPhrases![v].contains("?"))
+                  levelInput!.value = 2;
+                else
+                  levelInput!.value = 1;
+
                 flutterTts.speak(robotPhrases![v]);
-                Timer(Duration(seconds: 10), () {
+                Timer(
+                    Duration(
+                        seconds: (robotPhrases![v].split(" ").length / 2.2)
+                            .ceil()), () {
                   controller!.isActive = false;
                 });
               },
-              control: s,
               scrollDirection: Axis.vertical,
               itemCount: robotPhrases!.length,
               containerHeight: SizeConfig.height! / 4,
-              autoplayDelay: 10000,
               itemBuilder: (context, i) {
-                phController = i;
                 return Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   decoration: BoxDecoration(
@@ -136,5 +138,12 @@ class _RobotState extends State<Robot> {
         //control units
       ],
     ));
+  }
+
+  finishTalking(String word) {
+    int c = word.split(" ").length;
+    if (c < 10)
+      return 5;
+    else if (c < 20) return 10;
   }
 }

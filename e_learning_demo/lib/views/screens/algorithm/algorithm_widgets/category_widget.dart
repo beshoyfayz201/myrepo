@@ -71,7 +71,7 @@ class _CategoryItemState extends State<CategoryItem> {
                       img: "assets/images/c2.png",
                       goTo: () {
                         Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (c) => Robot()));
+                            .push(MaterialPageRoute(builder: (c) => Robot(word: widget.a.robot,)));
                       },
                       txt: "Play"),
                 ),

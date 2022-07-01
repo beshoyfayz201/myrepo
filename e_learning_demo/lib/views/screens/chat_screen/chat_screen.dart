@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_learning_demo/app_style/colors.dart';
 import 'package:e_learning_demo/app_style/size_config.dart';
 import 'package:e_learning_demo/views/main_widgets/drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -37,7 +38,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: drawer(user: FirebaseAuth.instance.currentUser!),
-      appBar: AppBar(backgroundColor: Colors.grey.shade300),
+      appBar: AppBar(backgroundColor: Colors.grey),
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(

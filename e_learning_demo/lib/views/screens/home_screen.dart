@@ -30,21 +30,10 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isopen = false;
   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
 
-  testa() async {
-    http.Response r = await http.post(
-        Uri.parse(
-          "http://10.0.2.2:44272/api/user/createalgorithm",
-        ),
-        body: jsonEncode(naiveAlgorithm.getMap()),
-        headers: <String, String>{
-          'Content-Type': 'application/json;Charset=UTF-8'
-        });
-    print("\n\n\n_______" + jsonDecode(r.body));
-  }
+
 
   @override
   void initState() {
-    testa();
     super.initState();
   }
 

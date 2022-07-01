@@ -16,9 +16,12 @@ class _NewMeassageState extends State<NewMeassage> {
     final userdata =
         await FirebaseFirestore.instance.collection("users").doc(u.uid).get();
     try {
-      await FirebaseFirestore.instance
-          .collection("c")
-          .add({"name": userdata["name"], "txt": m, "at": Timestamp.now(),"id":u.uid});
+      await FirebaseFirestore.instance.collection("c").add({
+        "name": userdata["name"],
+        "txt": m,
+        "at": Timestamp.now(),
+        "id": u.uid
+      });
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: SnackBar(content: Text(e.toString()))));
@@ -33,7 +36,11 @@ class _NewMeassageState extends State<NewMeassage> {
           Expanded(
             child: TextField(
               controller: cont,
-              decoration: InputDecoration(hintText: "Say something"),
+              style: TextStyle(color: Colors.black, fontSize: 20),
+              decoration: InputDecoration(
+                  hintText: "Say something",
+                  filled: true,
+                  fillColor: Colors.grey.withOpacity(0.5)),
               onChanged: (v) {
                 setState(() {
                   m = v;
